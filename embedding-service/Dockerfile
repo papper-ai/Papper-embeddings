@@ -3,9 +3,9 @@ FROM python:3.12.3-slim
 RUN addgroup --gid 10001 papper_user && \
     adduser --uid 10001 --gid 10001 --disabled-password --gecos "" papper_user
 
-WORKDIR /usr/src/vector_rag_service
+WORKDIR /usr/src/embedding-service
 
-ENV PYTHONPATH=/usr/src/vector_rag_service/src
+ENV PYTHONPATH=/usr/src/embedding-service/src
 
 COPY /requirements/base.txt /requirements/
 
@@ -16,6 +16,6 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-COPY --chown=papper_user:papper_user src .
+COPY --chown=papper_user:papper_user . .
 
 USER papper_user
